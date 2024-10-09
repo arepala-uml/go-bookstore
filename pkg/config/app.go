@@ -4,6 +4,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/labstack/gommon/log"
+	"github.com/spf13/viper"
 )
 
 // initializing db variable in which it helps other files to interact with db
@@ -12,16 +13,19 @@ var (
 	db *gorm.DB
 )
 
-// Host: sql12.freesqldatabase.com
-// Database name: sql12735030
-// Database user: sql12735030
-// Database password: AuLnnFYxhu
-// Port number: 3306
-
 // Helps to open a connection with datebase (mysq;)
 func Connect() {
+	database_name := viper.GetString("DATABASE_NAME")
+	database_user := viper.GetString("DATABASE_USER")
+	database_password := viper.GetString("DATABASE_PASSWORD")
+	database_host := viper.GetString("DATABASE_HOST")
+	database_port := viper.GetString("DATABASE_PORT")
 
-	d, err := gorm.Open("mysql", "sql12735030:AuLnnFYxhu@tcp(sql12.freesqldatabase.com:3306)/sql12735030?charset=utf8mb4&parseTime=True&loc=Local")
+	connection_link := database_user + ":" + database_password + "@" + "tcp(" + database_host + ":" + database_port + ")/" + database_user
+
+	connection_link = connection_link + "?charset=utf8mb4&parseTime=True&loc=Local"
+	log.Info(connection_link)
+	d, err := gorm.Open(database_name, connection_link)
 	if err != nil {
 		panic(err)
 	}

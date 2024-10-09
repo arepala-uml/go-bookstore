@@ -103,7 +103,3 @@ func UpdateBook(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 
 }
-
-//xapp-1-A07Q55A8G0N-7850602429264-85aa7a6c35eaa174e37d106928f6c4162f779ce96c068038f85e43a94bc65c65 (xapp- bot token& remaining is app token)
-
-//xoxb-7813232206967-7827739664211-CN2JjhAuKP1uJR7bmysFUrlw
